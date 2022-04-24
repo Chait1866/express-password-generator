@@ -31,6 +31,7 @@ app.get("/password", (req, res) => {
       exclude: req.query.excludeCharacters || "",
     };
   }
+
   let generatedPassword;
   try {
     generatedPassword = generator.generate(Options);
@@ -45,4 +46,4 @@ app.get("/password", (req, res) => {
   res.json(response);
 });
 
-app.listen(3000, () => "Server up on 3000");
+app.listen(process.env.PORT || 3000, () => "Server up");
