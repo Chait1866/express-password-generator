@@ -31,7 +31,6 @@ app.get("/password", (req, res) => {
       exclude: req.query.excludeCharacters || "",
     };
   }
-
   let generatedPassword;
   try {
     generatedPassword = generator.generate(Options);
@@ -45,5 +44,21 @@ app.get("/password", (req, res) => {
   };
   res.json(response);
 });
+
+app.get('/',(req,res) => {
+  res.redirect('/password')
+})
+
+app.get('*',(req,res) => {
+
+  let html = `
+  <div style="height:100vh;display:flex; justify-content:center; align-items:center">
+    <h1>404</h1>
+  </div>`
+
+  res.send(html)
+})
+
+
 
 app.listen(process.env.PORT || 3000, () => "Server up");
